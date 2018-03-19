@@ -9,26 +9,77 @@ describe('calculator', function () {
   it('it should be able to add', function(){
     calculator.previousTotal = 1;
     calculator.add(4)
-    assert.equal(calculator.runningTotal, 5);
+    assert.strictEqual(calculator.runningTotal, 5);
   })
 
   it('it should be able to subtract', function(){
     calculator.previousTotal = 7;
     calculator.subtract(4)
-    assert.equal(calculator.runningTotal, 3);
+    assert.strictEqual(calculator.runningTotal, 3);
   })
 
   it('it should be able to multiply', function(){
     calculator.previousTotal = 3;
     calculator.multiply(5)
-    assert.equal(calculator.runningTotal, 15);
+    assert.strictEqual(calculator.runningTotal, 15);
   })
 
   it('it should be able to divide', function(){
     calculator.previousTotal = 21;
     calculator.divide(7)
-    assert.equal(calculator.runningTotal, 3);
+    assert.strictEqual(calculator.runningTotal, 3);
   })
+
+  it('it should be able to click a number and update the running total with that number', function(){
+    calculator.numberClick(2)
+    assert.equal(calculator.runningTotal, 2);
+  })
+
+  it('it should be able to store operator when it is clicked ', function(){
+    calculator.operatorClick('+');
+    assert.strictEqual(calculator.previousOperator, '+');
+  })
+
+  it('it should be able to set previous operator to null if equals operator is clicked ', function(){
+    calculator.operatorClick('=');
+    assert.strictEqual(calculator.previousOperator, null);
+  })
+
+  it('it should be able to concatenate multiple number button clicks ', function(){
+    calculator.numberClick(2)
+    calculator.numberClick(4)
+    calculator.numberClick(9)
+    assert.strictEqual(calculator.runningTotal, 249);
+  })
+
+  it('it should be able to clear the running total if clear is clicked ', function(){
+    calculator.numberClick(2)
+    calculator.numberClick(4)
+    calculator.numberClick(9)
+    calculator.clearClick();
+    assert.strictEqual(calculator.runningTotal, 0);
+  })
+
+  it('it should be able to chain multiple operations together ', function(){
+    calculator.numberClick(2)
+    calculator.operatorClick('*');
+    calculator.numberClick(3)
+    calculator.operatorClick('=');
+
+    assert.strictEqual(calculator.runningTotal, 6);
+  })
+
+  // it('it should be able to clear the running total without affecting the calculation', function(){
+  //   calculator.numberClick(2);
+  //   calculator.operatorClick('*');
+  //   calculator.numberClick(3);
+  //   calculator.operatorClick('=');
+  //   calculator.operatorClick('+');
+  //   calculator.numberClick(10);
+  //   calculator.clearClick();
+  //
+  //   assert.strictEqual(calculator.runningTotal, 6);
+  // })
 
 });
 
