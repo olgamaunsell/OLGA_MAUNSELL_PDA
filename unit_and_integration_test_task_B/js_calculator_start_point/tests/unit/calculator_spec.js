@@ -69,18 +69,6 @@ describe('calculator', function () {
     assert.strictEqual(calculator.runningTotal, 6);
   })
 
-  // it('it should be able to clear the running total without affecting the calculation', function(){
-  //   calculator.numberClick(2);
-  //   calculator.operatorClick('*');
-  //   calculator.numberClick(3);
-  //   calculator.operatorClick('=');
-  //   calculator.operatorClick('+');
-  //   calculator.numberClick(10);
-  //   calculator.clearClick();
-  //
-  //   assert.strictEqual(calculator.runningTotal, 6);
-  // })
-
 });
 
 // You need to write unit tests to ensure that the majority of functions in the calculator operate correctly:
